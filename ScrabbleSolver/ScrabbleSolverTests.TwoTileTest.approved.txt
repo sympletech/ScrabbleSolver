@@ -1,0 +1,4 @@
+﻿foo[0] = a
+foo[1] = ab
+foo[2] = b
+foo[3] = ba

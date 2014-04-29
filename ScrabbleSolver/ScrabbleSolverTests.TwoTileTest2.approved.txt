@@ -1,0 +1,4 @@
+﻿foo[0] = c
+foo[1] = cd
+foo[2] = d
+foo[3] = dc
