@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace ScrabbleSolver
@@ -56,6 +57,32 @@ namespace ScrabbleSolver
             }
 
             return results.OrderByDescending(x=>x.Value).ToList();
+        }
+
+        public static List<string> ReadCSV()
+        {
+            string csvContent = File.ReadAllText("word_list.csv");
+            csvContent = csvContent.Replace("\n", "").Replace("\r", "");
+            return csvContent.Split(',').ToList();
+        }
+
+        public static List<KeyValuePair<string, int>> GetValidScrabbleWords(List<string> tileSet)
+        {
+            var candidates = GetScoredAndRankedCombinations(tileSet);
+
+            var validWords = ReadCSV();
+
+            var results = new List<KeyValuePair<string, int>>();
+
+            foreach (KeyValuePair<string, int> candidate in candidates)
+            {
+                if (validWords.Any(x => x == candidate.Key))
+                {
+                    results.Add(candidate);
+                }
+            }
+
+            return results;
         }
     }
 }

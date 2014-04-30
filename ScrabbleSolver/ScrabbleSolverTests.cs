@@ -71,5 +71,33 @@ namespace ScrabbleSolver
 
         }
 
+        [Test]
+        public void LoadWordsFromFile()
+        {
+ 
+            var results = Solver.ReadCSV();
+
+             ApprovalTests.Approvals.VerifyAll(results, "doodoo");
+
+        }
+
+        [Test]
+        public void CoupDeGrace()
+        {
+            // TODO: There is an issue with duplicate letters
+            //          Appears to be deduping when it should not
+            //          Final result is not deduping and it should
+            // TODO: BLANK TILE Handling ?:??!?!?!?!???!!?
+
+            string[] tiles =
+                {
+                    "a","b","c", "d", "a"
+                };
+            var results = Solver.GetValidScrabbleWords(tiles.ToList());
+
+             ApprovalTests.Approvals.VerifyAll(results, "doodoo");
+            
+        }
+
     }
 }
